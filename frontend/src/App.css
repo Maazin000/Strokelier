@@ -48,3 +48,132 @@
   margin: 20px auto;
   cursor: crosshair;
 }
+
+/* ===== GAME CONTROLS AND TOOLS ===== */
+
+/* Drawing tools */
+.tools {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 5px;
+  margin: 15px 0;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tool-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tool-section label {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.color-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 0;
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.color-btn.active {
+  border-color: gold;
+  box-shadow: 0 0 5px gold;
+}
+
+/* Brush size slider */
+input[type="range"] {
+  width: 100px;
+  height: 5px;
+  background: #555;
+  border-radius: 5px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #646cff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Game controls */
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  justify-content: center;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  background: #646cff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 120px;
+}
+
+.btn:hover {
+  background: #535bf2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.vote-btn {
+  background: #ff4444;
+}
+
+.vote-btn:hover {
+  background: #ff0000;
+}
+
+.vote-btn:disabled {
+  background: #666;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.vote-btn.pulse {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Voting modal */
+.vote-option {
+  transition: all 0.3s;
+  border: 1px solid #646cff;
+  background: rgba(100, 108, 255, 0.1);
+  color: white;
+}
+
+.vote-option:hover {
+  background: #4CAF50 !important;
+  color: white !important;
+  transform: scale(1.05);
+  border-color: #4CAF50;
+}
