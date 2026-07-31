@@ -315,10 +315,7 @@ export default function CanvasScreen({ roomState, myPlayer, socket, roleInfo: pa
       </div>
 
       <div className="canvas-layout">
-        <div
-          className="canvas-main"
-          style={{ flex: 1, width: "100%", maxWidth: "500px" }}
-        >
+        <div className="canvas-main">
           <div className="canvas-container">
             <canvas
               ref={canvasRef}
@@ -330,36 +327,37 @@ export default function CanvasScreen({ roomState, myPlayer, socket, roleInfo: pa
             />
           </div>
 
-            {isMyTurn && !hasPendingStroke && (
-              <div className="drawing-tools">
-                <div className="tool-group">
-                  <label>Thickness</label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="20"
-                    value={strokeWidth}
-                    onChange={(e) => setStrokeWidth(Number(e.target.value))}
-                    style={{ '--thickness': `${strokeWidth}px` }}
-                  />
-                </div>
-                <div className="tool-group colors">
-                  {COLORS.map((c) => (
-                    <button
-                      key={c}
-                      className={`color-swatch ${strokeColor === c ? "active" : ""}`}
-                      style={{ 
-                        backgroundColor: c,
-                        '--rotation': `rotate(${getRotationForColor(c)}deg)`
-                      }}
-                      onClick={() => setStrokeColor(c)}
+          {isMyTurn && (
+            <div className="canvas-controls-box">
+              {!hasPendingStroke && (
+                <div className="drawing-tools">
+                  <div className="tool-group">
+                    <label>Thickness</label>
+                    <input
+                      type="range"
+                      min="1"
+                      max="20"
+                      value={strokeWidth}
+                      onChange={(e) => setStrokeWidth(Number(e.target.value))}
+                      style={{ '--thickness': `${strokeWidth}px` }}
                     />
-                  ))}
+                  </div>
+                  <div className="tool-group colors">
+                    {COLORS.map((c) => (
+                      <button
+                        key={c}
+                        className={`color-swatch ${strokeColor === c ? "active" : ""}`}
+                        style={{ 
+                          backgroundColor: c,
+                          '--rotation': `rotate(${getRotationForColor(c)}deg)`
+                        }}
+                        onClick={() => setStrokeColor(c)}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {isMyTurn && (
               <div className="canvas-actions">
                 <Button
                   onClick={handleRetry}
@@ -384,9 +382,11 @@ export default function CanvasScreen({ roomState, myPlayer, socket, roleInfo: pa
                   </Button>
                 )}
               </div>
-            )}
-          </div>
+            </div>
+          )}
+        </div>
 
+        <div className="canvas-sidebar-panel">
           <ScoreboardSidebar
             players={roomState.players}
             currentTurnUid={currentTurnUid}
@@ -396,6 +396,7 @@ export default function CanvasScreen({ roomState, myPlayer, socket, roleInfo: pa
             drawTimeLimit={roomState.settings.drawTimeLimit}
           />
         </div>
+      </div>
 
         {showScribbleWarning && (
           <div className="modal-scrim open">
