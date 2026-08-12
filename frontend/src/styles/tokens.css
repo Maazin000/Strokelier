@@ -49,6 +49,26 @@ body {
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/doodle-bg-mobile.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  filter: url(#sketch-filter-5);
+}
+
+@media (min-width: 768px) {
+  body::before {
+    background-image: url('/doodle-bg-desktop.svg');
+  }
 }
 
 /* Utility Clip Paths */

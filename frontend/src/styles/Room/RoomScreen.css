@@ -6,6 +6,15 @@
   position: relative;
 }
 
+/* All game content must sit above the doodle layer */
+.screen-transition-wrapper,
+.spectator-banner,
+.countdown-overlay,
+.modal-scrim {
+  position: relative;
+  z-index: 1;
+}
+
 .room-error, .room-loading {
   display: flex;
   flex-direction: column;
